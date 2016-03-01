@@ -15,7 +15,7 @@
      
     function Start ()
     {
-    renderer.enabled = false;
+    GetComponent.<Renderer>().enabled = false;
     meshRenderer = GetComponent(MeshRenderer);
     if(!meshRenderer) meshRenderer = gameObject.AddComponent(MeshRenderer);
     meshRenderer.material = new Material("Shader \"Lines/Background\" { Properties { _Color (\"Main Color\", Color) = (1,1,1,1) } SubShader { Pass {" + (ZWrite ? " ZWrite on " : " ZWrite off ") + (blend ? " Blend SrcAlpha OneMinusSrcAlpha" : " ") + (AWrite ? " Colormask RGBA " : " ") + "Lighting Off Offset 1, 1 Color[_Color] }}}");

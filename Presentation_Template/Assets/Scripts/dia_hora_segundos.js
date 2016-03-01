@@ -17,6 +17,6 @@ function Update () {
     var minutes = theTime.Now.Minute;
     var seconds = theTime.Now.Second;
     
-    guiText.text = days + " " + day + " / " + month + " / " + year + " // " + hours + ":" + minutes + ":" + seconds;
+    GetComponent.<GUIText>().text = days + " " + day + " / " + month + " / " + year + " // " + hours + ":" + minutes + ":" + seconds;
 
 }
