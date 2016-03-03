@@ -2,21 +2,25 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class OverlayObject : MonoBehaviour {
+public class OverlayObject : MonoBehaviour
+{
 
-    private Image _image;
-    public Image Image
+    private Shadow shadow;
+
+    void Start()
     {
-        get
-        {
-            if (_image == null)
-                _image = GetComponent<Image>();
-            return _image;
-        }
+        shadow = GetComponent<Shadow>();
+    }
+
+    public void SetShadow(float phase)
+    {
+        if(shadow!=null)
+            shadow.effectDistance = new Vector2(phase * -3, shadow.effectDistance.y);
     }
 
     public void SetOverlay(Sprite sprite)
     {
-        Image.sprite = sprite;
+        var image = GetComponent<Image>();
+        image.sprite = sprite;
     }
 }

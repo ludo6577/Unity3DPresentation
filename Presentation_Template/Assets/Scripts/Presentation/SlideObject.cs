@@ -15,17 +15,6 @@ public class SlideObject : MonoBehaviour
         }
     }
 
-    private Image _image;
-    public Image Image
-    {
-        get
-        {
-            if (_image == null)
-                _image = GetComponent<Image>();
-            return _image;
-        }
-    }
-
     private OverlayObject _overlayObject;
     public OverlayObject Overlay
     {
@@ -37,7 +26,7 @@ public class SlideObject : MonoBehaviour
         }
     }
 
-    public float Angle;
+    public float AngleY;
     public float Period;
 
     [HideInInspector]
@@ -56,12 +45,15 @@ public class SlideObject : MonoBehaviour
     {
         deltaTime = deltaTime + Time.deltaTime;
         float phase = Mathf.Sin(deltaTime / Period);
-        transform.localRotation = Quaternion.AngleAxis(initialRotation + (phase * Angle), Vector3.up);
+        transform.localRotation = Quaternion.AngleAxis(initialRotation + (phase * AngleY), Vector3.up);
+
+        Overlay.SetShadow(phase);
     }
 
     public void SetSprite(Sprite sprite)
     {
-        Image.sprite = sprite;
+        var image = GetComponent<Image>();
+        image.sprite = sprite;
     }
 
     public void SetOverlay(Sprite sprite)
