@@ -41,27 +41,28 @@ public class SlideObject : MonoBehaviour
         initialRotation = transform.localEulerAngles.y;
     }
 
-    void Update()
+    public void Update()
     {
         deltaTime = deltaTime + Time.deltaTime;
         float phase = Mathf.Sin(deltaTime / Period);
         transform.localRotation = Quaternion.AngleAxis(initialRotation + (phase * AngleY), Vector3.up);
 
-        Overlay.SetShadow(phase);
+        if(Overlay!=null)
+            Overlay.SetShadow(phase);
     }
 
     public void SetSprite(Sprite sprite)
     {
         var image = GetComponent<Image>();
-        image.sprite = sprite;
+        if(image!=null)
+            image.sprite = sprite;
     }
 
     public void SetOverlay(Sprite sprite)
     {
-        Debug.Log(sprite == null ? "null" : "notnull");
         if (sprite == null)
             Overlay.gameObject.SetActive(false);
-        else 
+        else if(Overlay != null)
             Overlay.SetOverlay(sprite);
     }
 }
