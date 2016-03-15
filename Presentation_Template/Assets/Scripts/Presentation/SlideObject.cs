@@ -60,7 +60,7 @@ public class SlideObject : MonoBehaviour
 
     public void SetOverlay(Sprite sprite)
     {
-        if (sprite == null)
+        if (sprite == null && Overlay!=null)
             Overlay.gameObject.SetActive(false);
         else if(Overlay != null)
             Overlay.SetOverlay(sprite);
